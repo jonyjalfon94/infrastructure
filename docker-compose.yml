@@ -17,7 +17,7 @@ services:
       - 'gitlab_logs:/var/log/gitlab'
       - 'gitlab_data:/var/opt/gitlab'
   jenkins:
-          image: 'selaworkshops/jenkins-blueocean:latest'
+    image: 'selaworkshops/jenkins-blueocean:latest'
     container_name: 'jenkins'
     restart: 'always'
     hostname: 'jenkins.sela.com'
