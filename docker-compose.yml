@@ -2,37 +2,36 @@ version: '3.3'
 
 services:
   gitlab:
-    image: 'gitlab/gitlab-ce:latest'
+    image: 'selaworkshops/gitlab:latest'
+    container_name: 'gitlab'
     restart: 'always'
-#    hostname: 'gitlab.example.com'
-#    environment:
-#      GITLAB_OMNIBUS_CONFIG: "external_url 'https://gitlab.example.com'"
+    hostname: 'gitlab.sela.com'
     ports:
       - '80:80'
       - '443:443'
       - '22:22'
     networks:
       - tools
-#    volumes:
-#      - 'gitlab_config:/etc/gitlab'
-#      - 'gitlab_logs:/var/log/gitlab'
-#      - 'gitlab_data:/var/opt/gitlab'
-#    volumes:
-#      - '/srv/gitlab/config:/etc/gitlab'
-#      - '/srv/gitlab/logs:/var/log/gitlab'
-#      - '/srv/gitlab/data:/var/opt/gitlab'
+    volumes:
+      - 'gitlab_config:/etc/gitlab'
+      - 'gitlab_logs:/var/log/gitlab'
+      - 'gitlab_data:/var/opt/gitlab'
   jenkins:
-    image: 'selaworkshops/jenkins-blueocean'
+          image: 'selaworkshops/jenkins-blueocean:latest'
+    container_name: 'jenkins'
     restart: 'always'
     hostname: 'jenkins.sela.com'
     ports:
       - '8080:8080'
+      - '50000:50000'
     networks:
       - tools
-#    volumes:
+    volumes:
+      - 'jenkins_home:/var/jenkins_home'
 networks:
   tools:
 volumes:
   gitlab_config:
   gitlab_logs:
   gitlab_data:
+  jenkins_home:
