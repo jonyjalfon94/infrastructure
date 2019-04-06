@@ -2,11 +2,11 @@ version: '2.4'
 
 services:
   gitlab:
-    image: 'gitlab/gitlab-ce:11.4.5-ce.0'
+    image: 'gitlab/gitlab-ce:11.9.6-ce.0'
     container_name: 'gitlab'
     mem_limit: '3GB'
     restart: 'always'
-    hostname: '35.187.100.212'
+    hostname: "${SERVER_IP}"
     ports:
       - '80:80'
       - '443:443'
@@ -18,11 +18,11 @@ services:
       - 'gitlab_logs:/var/log/gitlab'
       - 'gitlab_data:/var/opt/gitlab'
   jenkins:
-    image: 'jenkinsci/blueocean:1.9.0'
+    image: 'jenkinsci/blueocean:1.14.0'
     container_name: 'jenkins'
     mem_limit: '3GB'
     restart: 'always'
-    hostname: '35.187.100.212'
+    hostname: "${SERVER_IP}"
     ports:
       - '8080:8080'
       - '50000:50000'
